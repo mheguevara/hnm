@@ -1,0 +1,16 @@
+@(links: Seq[HnLink])
+@main {
+  <div class="container-fluid" id="links-container">
+    @navbar()
+    @for(hnLink <- links) {
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+          <p class="text-left">
+            @hnLink.index. <a href="@hnLink.href" class="links-link">@hnLink.title</a>
+            <span class="links-caption">@hnLink.caption</span>
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+}
