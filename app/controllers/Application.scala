@@ -14,9 +14,13 @@ trait Application extends Controller with HNServiceComponent with ArchiveCompone
   
   def hnPage = Action.async {
 
+    logger.info(s"> hnPage")
+
     hnService.getLatestPage map { hnPage =>
 
       archive.save(hnPage)
+
+      logger.info(s"< hnPage")
 
       Ok(views.html.hnPageView(Some(hnPage), None))
 
