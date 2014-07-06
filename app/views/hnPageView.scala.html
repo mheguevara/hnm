@@ -1,0 +1,36 @@
+@(hnPageMaybe: Option[HNPage], maybeError: Option[String])
+@main {
+<div class="container-fluid" id="links-container">
+    @navbar()
+    @maybeError.map { error =>
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <div class="alert alert-warning" role="alert">
+                    <p>An error occurred during retrieval. Page you see may be outdated.</p>
+                    <p>@error</p>
+                </div>
+            </div>
+        </div>
+    }.getOrElse("")
+    @hnPageMaybe.map { hnPage =>
+        @for(hnLink <- hnPage.links) {
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <p class="text-left">
+                        @hnLink.order. <a href="@hnLink.href" class="links-link">@hnLink.title</a>
+                        <span class="links-caption">@hnLink.site</span>
+                    </p>
+                </div>
+            </div>
+        }
+    }.getOrElse {
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <p class="text-left">
+                    Can't find any archived snapshot. You can go visit <a href="https://news.ycombinator.com/">the original</a> while this problem is being fixed.
+                </p>
+            </div>
+        </div>
+    }
+</div>
+}
