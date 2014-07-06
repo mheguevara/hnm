@@ -6,6 +6,7 @@ import scala.concurrent.Future
 import java.util.UUID
 import play.filters.gzip.GzipFilter
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.http.HeaderNames.USER_AGENT
 
 /**
  * Copyright 2003-2014 Monitise Group Limited. All Rights Reserved.
@@ -39,7 +40,7 @@ object AccessLoggingFilter extends Filter {
 
       }
 
-      val line = s"$uuid - ${rh.method} ${rh.uri} ${resp.header.status} ${duration}ms${rh.session.get("username").fold("")(s => s" $s")}"
+      val line = s"$uuid - ${rh.remoteAddress} ${rh.headers.apply(USER_AGENT)} - ${rh.method} ${rh.uri} ${resp.header.status} ${duration}ms${rh.session.get("username").fold("")(s => s" $s")}"
 
       if(rh.uri.contains("assets"))
         Logger.debug(line)
