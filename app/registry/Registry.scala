@@ -1,6 +1,6 @@
 package registry
 
-import components.hnservice.{HNServiceWSImplComponent, HNServiceComponent}
+import components.hnservice.{HNServiceRSSImplComponent, HNServiceComponent}
 import components.archive.{ArchiveCacheImplComponent, ArchiveComponent}
 
 
@@ -14,4 +14,4 @@ import components.archive.{ArchiveCacheImplComponent, ArchiveComponent}
  */
 trait Registry extends HNServiceComponent with ArchiveComponent
 
-trait ProductionEnvironment extends Registry with HNServiceWSImplComponent with ArchiveCacheImplComponent
+trait ProductionEnvironment extends Registry with HNServiceRSSImplComponent with ArchiveCacheImplComponent
