@@ -7,15 +7,6 @@ import java.util.UUID
 import play.filters.gzip.GzipFilter
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-/**
- * Copyright 2003-2014 Monitise Group Limited. All Rights Reserved.
- *
- * Save to the extent permitted by law, you may not use, copy, modify,
- * distribute or create derivative works of this material or any part
- * of it without the prior written consent of Monitise Group Limited.
- * Any reproduction of this material must contain this notice.
- */
-
 object AccessLoggingFilter extends Filter {
 
   override def apply(f: (RequestHeader) => Future[Result])(rh: RequestHeader): Future[Result] = {
